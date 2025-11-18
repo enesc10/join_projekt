@@ -61,7 +61,7 @@ function validateLoginForm() {
  * Handle login form submission
  * @param {Event} event - Form submit event
  */
-function login(event) {
+async function login(event) {
     event.preventDefault();
     
     const emailInput = document.getElementById('email');
@@ -93,10 +93,9 @@ function login(event) {
     loginBtn.innerHTML = 'Logging in...';
     loginBtn.disabled = true;
     
-    // Simulate slight delay for better UX
-    setTimeout(() => {
+    try {
         // Attempt authentication
-        const result = authenticateUser(email, password);
+        const result = await authenticateUser(email, password);
         
         if (result.success) {
             setCurrentUser(result.user);
@@ -111,7 +110,12 @@ function login(event) {
             loginBtn.innerHTML = originalText;
             loginBtn.disabled = false;
         }
-    }, 300);
+    } catch (error) {
+        console.error('Login error:', error);
+        showErrorMessage(errorMessage, 'An error occurred during login. Please try again.');
+        loginBtn.innerHTML = originalText;
+        loginBtn.disabled = false;
+    }
 }
 
 /**
