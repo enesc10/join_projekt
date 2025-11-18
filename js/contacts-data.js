@@ -220,6 +220,84 @@ async function initializeDemoContacts() {
                 userId: null,
                 createdAt: new Date().toISOString(),
                 createdBy: 'user_demo_2'
+            },
+            // HIER DIE NEUEN KONTAKTE HINZUFÜGEN:
+            {
+                id: 'contact_demo_4',
+                name: 'Laura Schmidt',
+                email: 'laura@gmail.com',
+                phone: '+49 4444 44 444',
+                initials: 'LS',
+                color: '#FF7A00',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_1'
+            },
+            {
+                id: 'contact_demo_5',
+                name: 'Thomas Weber',
+                email: 'thomas@gmail.com',
+                phone: '+49 5555 55 555',
+                initials: 'TW',
+                color: '#9327FF',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_1'
+            },
+            {
+                id: 'contact_demo_6',
+                name: 'Nina Fischer',
+                email: 'nina@gmail.com',
+                phone: '+49 6666 66 666',
+                initials: 'NF',
+                color: '#7AE229',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_1'
+            },
+            {
+                id: 'contact_demo_7',
+                name: 'Felix Wagner',
+                email: 'felix@gmail.com',
+                phone: '+49 7777 77 777',
+                initials: 'FW',
+                color: '#FF3D00',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_2'
+            },
+            {
+                id: 'contact_demo_8',
+                name: 'Sarah Meyer',
+                email: 'sarah@gmail.com',
+                phone: '+49 8888 88 888',
+                initials: 'SM',
+                color: '#FFBB2B',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_2'
+            },
+            {
+                id: 'contact_demo_9',
+                name: 'Max Hoffmann',
+                email: 'max@gmail.com',
+                phone: '+49 9999 99 999',
+                initials: 'MH',
+                color: '#0038FF',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_2'
+            },
+            {
+                id: 'contact_demo_10',
+                name: 'Julia Becker',
+                email: 'julia@gmail.com',
+                phone: '+49 1010 10 101',
+                initials: 'JB',
+                color: '#FF5EB3',
+                userId: null,
+                createdAt: new Date().toISOString(),
+                createdBy: 'user_demo_1'
             }
         ];
         
