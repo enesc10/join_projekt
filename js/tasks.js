@@ -178,6 +178,7 @@ async function getTaskStatistics() {
         nextDeadline: null
     };
     
+    
     // Find next deadline for urgent tasks
     const urgentTasks = tasks.filter(task => 
         task.priority === 'urgent' && 
@@ -330,7 +331,32 @@ async function initializeDemoTasks() {
                 createdAt: new Date().toISOString(),
                 createdBy: 'user_demo_2',
                 updatedAt: new Date().toISOString()
-            }
+            },
+            {
+    id: 'task_demo_5',
+    title: 'API Documentation',
+    description: 'Create comprehensive API documentation with examples and best practices guide.',
+    category: 'Technical Task',
+    dueDate: '2025-12-18',
+    priority: 'urgent',
+    status: 'to-do',
+    assignedTo: ['contact_demo_4', 'contact_demo_5'],
+    subtasks: [
+        {
+            id: 'subtask_8',
+            title: 'Write endpoint descriptions',
+            completed: false
+        },
+        {
+            id: 'subtask_9',
+            title: 'Add code examples',
+            completed: false
+        }
+    ],
+    createdAt: new Date().toISOString(),
+    createdBy: 'user_demo_1',
+    updatedAt: new Date().toISOString()
+}
         ];
         
         await saveTasks(demoTasks);
