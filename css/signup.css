@@ -33,30 +33,6 @@
     fill: var(--accent-blue) !important;
 }
 
-/* Back Button */
-.back-btn {
-    position: absolute;
-    top: -20px;
-    left: -20px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: var(--space-sm);
-    border-radius: var(--radius-full);
-    transition: all 100ms ease;
-    z-index: 10;
-}
-
-.back-btn:hover {
-    background: var(--primary-light);
-    transform: translateX(-2px);
-}
-
-.back-btn img {
-    width: 20px;
-    height: 20px;
-}
-
 /* Sign Up Card */
 .signup-card {
     background: var(--white);
@@ -69,8 +45,43 @@
     position: relative;
 }
 
-.signup-card h1 {
+/* Header Container */
+.header-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
     margin-bottom: var(--space-sm);
+    position: relative;
+}
+
+/* Back Button */
+.back-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-sm);
+    border-radius: var(--radius-full);
+    transition: all 100ms ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.back-btn:hover {
+    background: var(--primary-light);
+    transform: translateX(-2px);
+}
+
+.back-btn img {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.signup-card h1 {
+    margin: 0;
     font-size: var(--h1-size);
     color: var(--text-primary);
 }
