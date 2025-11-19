@@ -25,11 +25,12 @@
 
         <!-- Sign Up Form -->
         <div class="signup-card">
-            <button class="back-btn" onclick="window.location.href='index.html'">
-                <img src="assets/img/arrow-left.png" alt="Back">
-            </button>
-            
-            <h1>Sign up</h1>
+            <div class="header-container">
+                <button class="back-btn" onclick="window.location.href='index.html'">
+                    <img src="assets/img/arrow-left.png" alt="Back">
+                </button>
+                <h1>Sign up</h1>
+            </div>
             <div class="underline"></div>
             
             <form onsubmit="signup(event)">
@@ -46,13 +47,13 @@
                 <div class="input-group">
                     <img src="assets/img/input-password.png" alt="Password" class="input-icon">
                     <input type="password" id="password" placeholder="Password" required minlength="6">
-                    <img src="assets/img/visibility_off.png" alt="Toggle" class="toggle-password" onclick="togglePassword('password')">
+                    <img src="assets/img/visibility_off.png" alt="Toggle" class="toggle-password" data-target="password">
                 </div>
                 
                 <div class="input-group">
                     <img src="assets/img/input-password.png" alt="Confirm Password" class="input-icon">
                     <input type="password" id="confirmPassword" placeholder="Confirm Password" required minlength="6">
-                    <img src="assets/img/visibility_off.png" alt="Toggle" class="toggle-password" onclick="togglePassword('confirmPassword')">
+                    <img src="assets/img/visibility_off.png" alt="Toggle" class="toggle-password" data-target="confirmPassword">
                 </div>
                 
                 <div class="checkbox-group">
