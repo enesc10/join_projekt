@@ -1,0 +1,177 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Summary</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/custom-dialogs.css">
+    <link rel="icon" href="assets/icons/join-logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="assets/icons/join-logo.svg" alt="Join" class="logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="summary.html" class="nav-item active">
+                    <img src="assets/icons/summary-icon.svg" alt="Summary">
+                    <span>Summary</span>
+                </a>
+                <a href="add-task.html" class="nav-item">
+                    <img src="assets/icons/addtask-icon.svg" alt="Add Task">
+                    <span>Add Task</span>
+                </a>
+                <a href="board.html" class="nav-item">
+                    <img src="assets/icons/board-icon.svg" alt="Board">
+                    <span>Board</span>
+                </a>
+                <a href="contacts.html" class="nav-item">
+                    <img src="assets/icons/contacts-icon.svg" alt="Contacts">
+                    <span>Contacts</span>
+                </a>
+            </nav>
+            <div class="legal-links">
+                <a href="privacy-policy.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Privacy">
+                    <span>Privacy Policy</span>
+                </a>
+                <a href="legal-notice.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Legal">
+                    <span>Legal notice</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <h1>Kanban Project Management Tool</h1>
+                <div class="header-actions">
+                    <button class="help-btn" onclick="window.location.href='help.html'">
+                        <img src="assets/icons/question-mark.svg" alt="Help">
+                    </button>
+                    <div class="user-menu">
+                        <div class="user-profile" id="userProfile" onclick="toggleUserMenu()">
+                            <span id="userInitials">GU</span>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <button onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Summary Content -->
+            <div class="summary-container">
+                <div class="summary-header">
+                    <h2>Join 360 | Key Metrics at a Glance</h2>
+                    <div class="greeting" id="greeting">
+                        <span id="timeGreeting">Good morning</span>,
+                        <span id="userName">Guest</span>
+                    </div>
+                </div>
+
+                <div class="metrics-grid">
+                    <!-- Tasks in Board -->
+                    <div class="metric-card large" onclick="navigateToBoard()">
+                        <div class="metric-content">
+                            <div class="metric-number" id="tasksInBoard">0</div>
+                            <div class="metric-label">Tasks in<br>Board</div>
+                        </div>
+                        <div class="metric-icon">
+                            <img src="assets/img/pencil.png" alt="Tasks">
+                        </div>
+                    </div>
+
+                    <!-- Tasks in Progress -->
+                    <div class="metric-card large" onclick="navigateToBoard('in-progress')">
+                        <div class="metric-content">
+                            <div class="metric-number" id="tasksInProgress">0</div>
+                            <div class="metric-label">Tasks in<br>Progress</div>
+                        </div>
+                        <div class="metric-icon">
+                            <img src="assets/img/pencil.png" alt="Progress">
+                        </div>
+                    </div>
+
+                    <!-- Awaiting Feedback -->
+                    <div class="metric-card large" onclick="navigateToBoard('await-feedback')">
+                        <div class="metric-content">
+                            <div class="metric-number" id="awaitingFeedback">0</div>
+                            <div class="metric-label">Awaiting<br>Feedback</div>
+                        </div>
+                        <div class="metric-icon">
+                            <img src="assets/img/pencil.png" alt="Feedback">
+                        </div>
+                    </div>
+
+                    <!-- Urgent -->
+                    <div class="metric-card urgent" onclick="navigateToBoard('urgent')">
+                        <div class="urgent-content">
+                            <div class="urgent-icon">
+                                <img src="assets/img/urgent.png" alt="Urgent">
+                            </div>
+                            <div class="urgent-info">
+                                <div class="urgent-number" id="urgentTasks">0</div>
+                                <div class="urgent-label">Urgent</div>
+                            </div>
+                        </div>
+                        <div class="urgent-deadline">
+                            <div class="deadline-date" id="nextDeadline">No urgent tasks</div>
+                            <div class="deadline-label">Upcoming Deadline</div>
+                        </div>
+                    </div>
+
+                    <!-- Todo -->
+                    <div class="metric-card small" onclick="navigateToBoard('to-do')">
+                        <div class="metric-icon">
+                            <img src="assets/img/pencil.png" alt="Todo">
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-number" id="todoTasks">0</div>
+                            <div class="metric-label">To-do</div>
+                        </div>
+                    </div>
+
+                    <!-- Done -->
+                    <div class="metric-card small" onclick="navigateToBoard('done')">
+                        <div class="metric-icon">
+                            <img src="assets/img/checkmark-blue.png" alt="Done">
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-number" id="doneTasks">0</div>
+                            <div class="metric-label">Done</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-database.js"></script>
+    
+    <!-- Custom Dialogs -->
+    <script src="js/custom-dialogs.js"></script>
+    
+    <!-- App Scripts -->
+    
+    <script src="js/auth.js"></script>
+    <script src="js/contacts-data.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/demo-data-manager.js"></script>
+    <script src="js/summary.js"></script>
+</body>
+</html>

@@ -1,0 +1,210 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Add Task</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/add-task.css">
+    <link rel="stylesheet" href="css/custom-dialogs.css">
+    <link rel="icon" href="assets/icons/join-logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="assets/icons/join-logo.svg" alt="Join" class="logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="summary.html" class="nav-item">
+                    <img src="assets/icons/summary-icon.svg" alt="Summary">
+                    <span>Summary</span>
+                </a>
+                <a href="add-task.html" class="nav-item active">
+                    <img src="assets/icons/addtask-icon.svg" alt="Add Task">
+                    <span>Add Task</span>
+                </a>
+                <a href="board.html" class="nav-item">
+                    <img src="assets/icons/board-icon.svg" alt="Board">
+                    <span>Board</span>
+                </a>
+                <a href="contacts.html" class="nav-item">
+                    <img src="assets/icons/contacts-icon.svg" alt="Contacts">
+                    <span>Contacts</span>
+                </a>
+            </nav>
+            <div class="legal-links">
+                <a href="privacy-policy.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Privacy">
+                    <span>Privacy Policy</span>
+                </a>
+                <a href="legal-notice.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Legal">
+                    <span>Legal notice</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <h1>Kanban Project Management Tool</h1>
+                <div class="header-actions">
+                    <button class="help-btn" onclick="window.location.href='help.html'">
+                        <img src="assets/icons/question-mark.svg" alt="Help">
+                    </button>
+                    <div class="user-menu">
+                        <div class="user-profile" id="userProfile" onclick="toggleUserMenu()">
+                            <span id="userInitials">GU</span>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <button onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Add Task Content -->
+            <div class="add-task-container">
+                <h2>Add Task</h2>
+                
+                <form id="addTaskForm" onsubmit="createTaskFromForm(event)">
+                    <div class="form-grid">
+                        <!-- Left Column -->
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label for="title">Title*</label>
+                                <input type="text" id="title" placeholder="Enter a title" required>
+                                <div class="error-message" id="titleError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="description">Description</label>
+                                <textarea id="description" placeholder="Enter a Description" rows="4"></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="dueDate">Due date*</label>
+                                <div class="input-with-icon">
+                                    <input type="date" id="dueDate" required>
+                                    <img src="assets/img/calendar.png" alt="Calendar" class="input-icon">
+                                </div>
+                                <div class="error-message" id="dueDateError"></div>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="form-column">
+                            <div class="form-group">
+                                <label>Priority</label>
+                                <div class="priority-buttons">
+                                    <button type="button" class="priority-btn active" data-priority="urgent" onclick="selectPriority('urgent')">
+                                        <span>Urgent</span>
+                                        <img src="assets/img/urgent.png" alt="Urgent">
+                                    </button>
+                                    <button type="button" class="priority-btn" data-priority="medium" onclick="selectPriority('medium')">
+                                        <span>Medium</span>
+                                        <img src="assets/img/medium.png" alt="Medium">
+                                    </button>
+                                    <button type="button" class="priority-btn" data-priority="low" onclick="selectPriority('low')">
+                                        <span>Low</span>
+                                        <img src="assets/img/low.png" alt="Low">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="assignedTo">Assigned to</label>
+                                <div class="dropdown">
+                                    <div class="dropdown-header" onclick="toggleAssignedDropdown()">
+                                        <span id="assignedToPlaceholder">Select contacts to assign</span>
+                                        <img src="assets/img/dropdown.png" alt="Dropdown" class="dropdown-icon">
+                                    </div>
+                                    <div class="dropdown-content" id="assignedToDropdown">
+                                        <!-- Contacts will be loaded here -->
+                                    </div>
+                                </div>
+                                <div class="assigned-contacts" id="assignedContacts">
+                                    <!-- Selected contacts will be shown here -->
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="category">Category*</label>
+                                <div class="dropdown">
+                                    <div class="dropdown-header" onclick="toggleCategoryDropdown()">
+                                        <span id="categoryPlaceholder">Select task category</span>
+                                        <img src="assets/img/dropdown.png" alt="Dropdown" class="dropdown-icon">
+                                    </div>
+                                    <div class="dropdown-content" id="categoryDropdown">
+                                        <div class="dropdown-item" onclick="selectCategory('User Story')">User Story</div>
+                                        <div class="dropdown-item" onclick="selectCategory('Technical Task')">Technical Task</div>
+                                    </div>
+                                </div>
+                                <div class="error-message" id="categoryError"></div>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Subtasks</label>
+                                <div class="subtask-input-container">
+                                    <input type="text" id="subtaskInput" placeholder="Add new subtask" onkeypress="handleSubtaskKeypress(event)">
+                                    <div class="subtask-actions">
+                                        <button type="button" onclick="clearSubtaskInput()">
+                                            <img src="assets/img/clear.png" alt="Clear">
+                                        </button>
+                                        <button type="button" onclick="addSubtask()">
+                                            <img src="assets/img/checkmark-black.png" alt="Add">
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="subtask-list" id="subtaskList">
+                                    <!-- Subtasks will be shown here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-footer">
+                        <p class="required-note">*This field is required</p>
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" onclick="clearForm()">
+                                <img src="assets/img/clear.png" alt="Clear">
+                                Clear
+                            </button>
+                            <button type="submit" class="btn-primary">
+                                <span>Create Task</span>
+                                <img src="assets/img/checkmark-white-small.png" alt="Create">
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-database.js"></script>
+    
+    <!-- Custom Dialogs -->
+    <script src="js/custom-dialogs.js"></script>
+    
+    <!-- App Scripts -->
+    
+    <script src="js/auth.js"></script>
+    <script src="js/contacts-data.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/demo-data-manager.js"></script>
+    <script src="js/add-task.js"></script>
+</body>
+</html>

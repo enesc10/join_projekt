@@ -1,0 +1,206 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Board</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/board.css">
+    <link rel="stylesheet" href="css/custom-dialogs.css">
+    <link rel="icon" href="assets/icons/join-logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="assets/icons/join-logo.svg" alt="Join" class="logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="summary.html" class="nav-item">
+                    <img src="assets/icons/summary-icon.svg" alt="Summary">
+                    <span>Summary</span>
+                </a>
+                <a href="add-task.html" class="nav-item">
+                    <img src="assets/icons/addtask-icon.svg" alt="Add Task">
+                    <span>Add Task</span>
+                </a>
+                <a href="board.html" class="nav-item active">
+                    <img src="assets/icons/board-icon.svg" alt="Board">
+                    <span>Board</span>
+                </a>
+                <a href="contacts.html" class="nav-item">
+                    <img src="assets/icons/contacts-icon.svg" alt="Contacts">
+                    <span>Contacts</span>
+                </a>
+            </nav>
+            <div class="legal-links">
+                <a href="privacy-policy.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Privacy">
+                    <span>Privacy Policy</span>
+                </a>
+                <a href="legal-notice.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Legal">
+                    <span>Legal notice</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <h1>Kanban Project Management Tool</h1>
+                <div class="header-actions">
+                    <button class="help-btn" onclick="window.location.href='help.html'">
+                        <img src="assets/icons/question-mark.svg" alt="Help">
+                    </button>
+                    <div class="user-menu">
+                        <div class="user-profile" id="userProfile" onclick="toggleUserMenu()">
+                            <span id="userInitials">GU</span>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <button onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Board Header -->
+            <div class="board-header">
+                <h2>Board</h2>
+                <div class="board-actions">
+                    <div class="search-container">
+                        <input type="text" id="searchInput" placeholder="Find Task" oninput="searchTasksInBoard()">
+                        <img src="assets/img/search.png" alt="Search" class="search-icon">
+                    </div>
+                    <button class="btn-primary" onclick="window.location.href='add-task.html'">
+                        <img src="assets/img/plus-white.png" alt="Add">
+                        Add task
+                    </button>
+                </div>
+            </div>
+
+            <!-- Kanban Board -->
+            <div class="kanban-board">
+                <!-- To Do Column -->
+                <div class="kanban-column" data-status="to-do">
+                    <div class="column-header">
+                        <h3>To do</h3>
+                        <button class="add-task-btn" onclick="addTaskToColumn('to-do')">
+                            <img src="assets/img/plus.small.png" alt="Add">
+                        </button>
+                    </div>
+                    <div class="task-list" id="todoColumn">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- In Progress Column -->
+                <div class="kanban-column" data-status="in-progress">
+                    <div class="column-header">
+                        <h3>In progress</h3>
+                        <button class="add-task-btn" onclick="addTaskToColumn('in-progress')">
+                            <img src="assets/img/plus.small.png" alt="Add">
+                        </button>
+                    </div>
+                    <div class="task-list" id="inProgressColumn">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Await Feedback Column -->
+                <div class="kanban-column" data-status="await-feedback">
+                    <div class="column-header">
+                        <h3>Await feedback</h3>
+                        <button class="add-task-btn" onclick="addTaskToColumn('await-feedback')">
+                            <img src="assets/img/plus.small.png" alt="Add">
+                        </button>
+                    </div>
+                    <div class="task-list" id="awaitFeedbackColumn">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Done Column -->
+                <div class="kanban-column" data-status="done">
+                    <div class="column-header">
+                        <h3>Done</h3>
+                        <button class="add-task-btn" onclick="addTaskToColumn('done')">
+                            <img src="assets/img/plus.small.png" alt="Add">
+                        </button>
+                    </div>
+                    <div class="task-list" id="doneColumn">
+                        <!-- Tasks will be rendered here -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Task Detail Modal -->
+    <div id="taskDetailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="task-category" id="modalTaskCategory"></div>
+                <button class="close-btn" onclick="closeTaskDetailModal()">
+                    <img src="assets/img/clear.png" alt="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <h3 id="modalTaskTitle"></h3>
+                <p id="modalTaskDescription"></p>
+                <div class="task-info">
+                    <div class="info-item">
+                        <span>Due date:</span>
+                        <span id="modalTaskDueDate"></span>
+                    </div>
+                    <div class="info-item">
+                        <span>Priority:</span>
+                        <span id="modalTaskPriority"></span>
+                    </div>
+                </div>
+                <div class="assigned-to" id="modalAssignedTo">
+                    <!-- Assigned contacts will be shown here -->
+                </div>
+                <div class="subtasks" id="modalSubtasks">
+                    <!-- Subtasks will be shown here -->
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-secondary" onclick="deleteTaskFromBoard()">
+                    <img src="assets/img/delete.png" alt="Delete">
+                    Delete
+                </button>
+                <button class="btn-primary" onclick="editTask()">
+                    <img src="assets/img/pencil-white.png" alt="Edit">
+                    Edit
+                </button>
+            </div>
+        </div>
+    </div>
+
+   
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-database.js"></script>
+    
+    <!-- Custom Dialogs -->
+    <script src="js/custom-dialogs.js"></script>
+    
+    <!-- App Scripts -->
+    
+    <script src="js/auth.js"></script>
+    <script src="js/contacts-data.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/demo-data-manager.js"></script>
+    <script src="js/board.js"></script>
+</body>
+</html>

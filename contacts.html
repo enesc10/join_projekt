@@ -1,0 +1,227 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join - Contacts</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="stylesheet" href="css/contacts.css">
+    <link rel="stylesheet" href="css/custom-dialogs.css">
+    <link rel="icon" href="assets/icons/join-logo.svg">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <img src="assets/icons/join-logo.svg" alt="Join" class="logo">
+            </div>
+            <nav class="nav-menu">
+                <a href="summary.html" class="nav-item">
+                    <img src="assets/icons/summary-icon.svg" alt="Summary">
+                    <span>Summary</span>
+                </a>
+                <a href="add-task.html" class="nav-item">
+                    <img src="assets/icons/addtask-icon.svg" alt="Add Task">
+                    <span>Add Task</span>
+                </a>
+                <a href="board.html" class="nav-item">
+                    <img src="assets/icons/board-icon.svg" alt="Board">
+                    <span>Board</span>
+                </a>
+                <a href="contacts.html" class="nav-item active">
+                    <img src="assets/icons/contacts-icon.svg" alt="Contacts">
+                    <span>Contacts</span>
+                </a>
+            </nav>
+            <div class="legal-links">
+                <a href="privacy-policy.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Privacy">
+                    <span>Privacy Policy</span>
+                </a>
+                <a href="legal-notice.html">
+                    <img src="assets/icons/legal-notice.svg" alt="Legal">
+                    <span>Legal notice</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="page-header">
+                <h1>Kanban Project Management Tool</h1>
+                <div class="header-actions">
+                    <button class="help-btn" onclick="window.location.href='help.html'">
+                        <img src="assets/icons/question-mark.svg" alt="Help">
+                    </button>
+                    <div class="user-menu">
+                        <div class="user-profile" id="userProfile" onclick="toggleUserMenu()">
+                            <span id="userInitials">GU</span>
+                        </div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <button onclick="logout()">Logout</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="contacts-container">
+                <!-- Contact List Panel -->
+                <div class="contacts-panel">
+                    <div class="contacts-header">
+                        <h2>Contacts</h2>
+                        <button class="btn-primary" onclick="openAddContactModal()">
+                            <img src="assets/img/person_add.png" alt="Add">
+                            Add new contact
+                        </button>
+                    </div>
+                    
+                    <div class="contacts-list" id="contactsList">
+                        <!-- Contacts will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Contact Detail Panel -->
+                <div class="contact-detail-panel">
+                    <div class="contact-detail-empty" id="contactDetailEmpty">
+                        <h2>Contacts</h2>
+                        <p>Better with a team</p>
+                    </div>
+                    
+                    <div class="contact-detail-content" id="contactDetailContent" style="display: none;">
+                        <div class="contact-header">
+                            <div class="contact-avatar" id="detailAvatar">
+                                <span id="detailInitials">AB</span>
+                            </div>
+                            <div class="contact-info">
+                                <h3 id="detailName">Anton Mayer</h3>
+                                <div class="contact-actions">
+                                    <button class="btn-icon" onclick="editContact()">
+                                        <img src="assets/img/pencil.png" alt="Edit">
+                                        Edit
+                                    </button>
+                                    <button class="btn-icon" onclick="deleteContact()">
+                                        <img src="assets/img/delete.png" alt="Delete">
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-details">
+                            <h4>Contact Information</h4>
+                            <div class="detail-item">
+                                <strong>Email</strong>
+                                <a href="#" id="detailEmail">antonm@gmail.com</a>
+                            </div>
+                            <div class="detail-item">
+                                <strong>Phone</strong>
+                                <span id="detailPhone">+49 1111 111 111</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Contact Modal -->
+    <div id="addContactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-btn" onclick="closeAddContactModal()">
+                    <img src="assets/img/clear.png" alt="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-avatar">
+                    <img src="assets/img/person_add.png" alt="Add Contact">
+                </div>
+                <h3>Add contact</h3>
+                <p>Tasks are better with a team!</p>
+                
+                <form onsubmit="addContact(event)">
+                    <div class="input-group">
+                        <img src="assets/img/input-name.png" alt="Name" class="input-icon">
+                        <input type="text" id="addContactName" placeholder="Name" required>
+                    </div>
+                    <div class="input-group">
+                        <img src="assets/img/input-email.png" alt="Email" class="input-icon">
+                        <input type="email" id="addContactEmail" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <img src="assets/img/Input_Phone.png" alt="Phone" class="input-icon">
+                        <input type="tel" id="addContactPhone" placeholder="Phone" required>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-secondary" onclick="closeAddContactModal()">Cancel</button>
+                        <button type="submit" class="btn-primary">Create contact</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Contact Modal -->
+    <div id="editContactModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close-btn" onclick="closeEditContactModal()">
+                    <img src="assets/img/clear.png" alt="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-avatar" id="editContactAvatar">
+                    <span id="editContactInitials">AB</span>
+                </div>
+                <h3>Edit contact</h3>
+                
+                <form onsubmit="saveEditContact(event)">
+                    <div class="input-group">
+                        <img src="assets/img/input-name.png" alt="Name" class="input-icon">
+                        <input type="text" id="editContactName" placeholder="Name" required>
+                    </div>
+                    <div class="input-group">
+                        <img src="assets/img/input-email.png" alt="Email" class="input-icon">
+                        <input type="email" id="editContactEmail" placeholder="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <img src="assets/img/Input_Phone.png" alt="Phone" class="input-icon">
+                        <input type="tel" id="editContactPhone" placeholder="Phone" required>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button type="button" class="btn-danger" onclick="confirmDeleteContact()">Delete</button>
+                        <button type="submit" class="btn-primary">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
+    
+    <!-- Firebase Configuration -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/firebase-database.js"></script>
+    
+    <!-- Custom Dialogs -->
+    <script src="js/custom-dialogs.js"></script>
+    
+    <!-- App Scripts -->
+    
+    <script src="js/auth.js"></script>
+    <script src="js/contacts-data.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/demo-data-manager.js"></script>
+    <script src="js/contacts.js"></script>
+</body>
+</html>
