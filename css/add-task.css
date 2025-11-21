@@ -19,12 +19,34 @@
     grid-template-columns: 1fr 1fr;
     gap: var(--space-3xl);
     margin-bottom: var(--space-2xl);
+    position: relative;
+}
+
+/* Vertical divider line between columns */
+.form-grid::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: #D1D5DB;
+    transform: translateX(-50%);
 }
 
 .form-column {
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
+    padding: 0 var(--space-lg);
+}
+
+.form-column:first-child {
+    padding-left: 0;
+}
+
+.form-column:last-child {
+    padding-right: 0;
 }
 
 .form-group {
@@ -450,6 +472,15 @@
     .form-grid {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
+    }
+
+    /* Hide vertical divider on mobile */
+    .form-grid::before {
+        display: none;
+    }
+
+    .form-column {
+        padding: 0;
     }
 
     .form-group input,
