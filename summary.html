@@ -71,44 +71,33 @@
             <!-- Summary Content -->
             <div class="summary-container">
                 <div class="summary-header">
-                    <h2>Join 360 | Key Metrics at a Glance</h2>
-                    <div class="greeting" id="greeting">
-                        <span id="timeGreeting">Good morning</span>,
-                        <span id="userName">Guest</span>
-                    </div>
+                    <h2><span class="title-main">Join 360</span> <span class="title-separator">|</span> <span class="title-sub">Key Metrics at a Glance</span></h2>
                 </div>
 
                 <div class="metrics-grid">
-                    <!-- Tasks in Board -->
-                    <div class="metric-card large" onclick="navigateToBoard()">
-                        <div class="metric-content">
-                            <div class="metric-number" id="tasksInBoard">0</div>
-                            <div class="metric-label">Tasks in<br>Board</div>
-                        </div>
+                    <!-- Todo -->
+                    <div class="metric-card small" onclick="navigateToBoard('to-do')">
                         <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Tasks">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+                            </svg>
+                        </div>
+                        <div class="metric-content">
+                            <div class="metric-number" id="todoTasks">0</div>
+                            <div class="metric-label">To-do</div>
                         </div>
                     </div>
 
-                    <!-- Tasks in Progress -->
-                    <div class="metric-card large" onclick="navigateToBoard('in-progress')">
-                        <div class="metric-content">
-                            <div class="metric-number" id="tasksInProgress">0</div>
-                            <div class="metric-label">Tasks in<br>Progress</div>
-                        </div>
+                    <!-- Done -->
+                    <div class="metric-card small" onclick="navigateToBoard('done')">
                         <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Progress">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+                            </svg>
                         </div>
-                    </div>
-
-                    <!-- Awaiting Feedback -->
-                    <div class="metric-card large" onclick="navigateToBoard('await-feedback')">
                         <div class="metric-content">
-                            <div class="metric-number" id="awaitingFeedback">0</div>
-                            <div class="metric-label">Awaiting<br>Feedback</div>
-                        </div>
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Feedback">
+                            <div class="metric-number" id="doneTasks">0</div>
+                            <div class="metric-label">Done</div>
                         </div>
                     </div>
 
@@ -116,7 +105,11 @@
                     <div class="metric-card urgent" onclick="navigateToBoard('urgent')">
                         <div class="urgent-content">
                             <div class="urgent-icon">
-                                <img src="assets/img/urgent.png" alt="Urgent">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16 4L18 14L16 18L14 14L16 4Z" fill="white"/>
+                                    <path d="M16 22L18 26L16 28L14 26L16 22Z" fill="white"/>
+                                    <path d="M16 8L18 16L16 20L14 16L16 8Z" fill="white" opacity="0.7"/>
+                                </svg>
                             </div>
                             <div class="urgent-info">
                                 <div class="urgent-number" id="urgentTasks">0</div>
@@ -129,25 +122,35 @@
                         </div>
                     </div>
 
-                    <!-- Todo -->
-                    <div class="metric-card small" onclick="navigateToBoard('to-do')">
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Todo">
-                        </div>
-                        <div class="metric-content">
-                            <div class="metric-number" id="todoTasks">0</div>
-                            <div class="metric-label">To-do</div>
+                    <!-- Greeting Section -->
+                    <div class="greeting-section">
+                        <div class="greeting-text">
+                            <span id="timeGreeting">Good morning</span>,<br>
+                            <span id="userName" class="user-name-highlight">Sofia Müller</span>
                         </div>
                     </div>
 
-                    <!-- Done -->
-                    <div class="metric-card small" onclick="navigateToBoard('done')">
-                        <div class="metric-icon">
-                            <img src="assets/img/checkmark-blue.png" alt="Done">
-                        </div>
+                    <!-- Tasks in Board -->
+                    <div class="metric-card large" onclick="navigateToBoard()">
                         <div class="metric-content">
-                            <div class="metric-number" id="doneTasks">0</div>
-                            <div class="metric-label">Done</div>
+                            <div class="metric-number" id="tasksInBoard">0</div>
+                            <div class="metric-label">Tasks in<br>Board</div>
+                        </div>
+                    </div>
+
+                    <!-- Tasks in Progress -->
+                    <div class="metric-card large" onclick="navigateToBoard('in-progress')">
+                        <div class="metric-content">
+                            <div class="metric-number" id="tasksInProgress">0</div>
+                            <div class="metric-label">Tasks In<br>Progress</div>
+                        </div>
+                    </div>
+
+                    <!-- Awaiting Feedback -->
+                    <div class="metric-card large" onclick="navigateToBoard('await-feedback')">
+                        <div class="metric-content">
+                            <div class="metric-number" id="awaitingFeedback">0</div>
+                            <div class="metric-label">Awaiting<br>Feedback</div>
                         </div>
                     </div>
                 </div>
