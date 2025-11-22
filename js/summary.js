@@ -44,10 +44,9 @@ function updateGreeting() {
     
     timeGreetingEl.textContent = greeting;
     
-    // Set user name
+    // Set user name - show full name, not just first name
     if (currentUser) {
-        const firstName = currentUser.name.split(' ')[0];
-        userNameEl.textContent = currentUser.isGuest ? 'Guest' : firstName;
+        userNameEl.textContent = currentUser.isGuest ? 'Guest' : currentUser.name;
     } else {
         userNameEl.textContent = 'Guest';
     }
