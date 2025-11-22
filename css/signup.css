@@ -92,7 +92,7 @@
     width: 150px;
     height: 3px;
     background: var(--accent-blue);
-    margin: 0 auto 32px;
+    margin: 0 auto 20px;
     border-radius: var(--radius-sm);
 }
 
@@ -105,7 +105,7 @@
 /* Input Group Styling with Icons on RIGHT */
 .signup-card .input-group {
     position: relative;
-    margin-bottom: 32px;
+    margin-bottom: 18px;
 }
 
 .signup-card .input-group input {
@@ -159,7 +159,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 16px 0 32px 0;
+    margin: 12px 0 18px 0;
     text-align: left;
     justify-content: flex-start;
 }
@@ -197,7 +197,7 @@
     height: 48px;
     font-size: 21px;
     font-weight: 700;
-    margin-top: 8px;
+    margin-top: 0px;
     background: var(--primary-dark);
     color: var(--white);
     border: none;
