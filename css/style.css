@@ -322,7 +322,7 @@ input.valid, textarea.valid, select.valid {
 
 .input-group .input-icon {
     position: absolute;
-    left: 16px;
+    right: 16px;
     top: 50%;
     transform: translateY(-50%);
     width: 20px;
@@ -331,7 +331,8 @@ input.valid, textarea.valid, select.valid {
 }
 
 .input-group input {
-    padding-left: 48px;
+    padding-right: 48px;
+    padding-left: 16px;
 }
 
 .input-group .toggle-password {
