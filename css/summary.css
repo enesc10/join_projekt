@@ -1,0 +1,794 @@
+/* ===========================
+   Summary Page Styles
+   Modern, Responsive Design
+   =========================== */
+
+/* Container */
+.summary-container {
+    padding: var(--space-xl);
+    max-width: 1400px;
+    margin: 0 auto;
+    animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Header Section */
+.summary-header {
+    margin-bottom: var(--space-xl);
+}
+
+.summary-header h2 {
+    font-size: 2.5rem;
+    color: var(--text-primary);
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+}
+
+.title-main {
+    color: var(--text-primary);
+}
+
+.title-separator {
+    color: var(--accent-blue);
+    margin: 0 var(--space-md);
+}
+
+.title-sub {
+    color: var(--text-secondary);
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+/* Metrics Grid - Two Column Layout */
+.metrics-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+}
+
+/* Metric Card */
+.metric-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-card);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 140px;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hover effect with gradient border */
+.metric-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: var(--radius-lg);
+    padding: 2px;
+    background: linear-gradient(135deg, var(--accent-blue), var(--primary-dark));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.metric-card:hover::before {
+    opacity: 1;
+}
+
+.metric-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12), 
+                0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.metric-card:active {
+    transform: translateY(-4px);
+}
+
+/* Card variants */
+.metric-card.large {
+    grid-column: span 1;
+}
+
+.metric-card.small {
+    grid-column: span 1;
+    min-height: 140px;
+}
+
+/* Urgent Card - Special Styling */
+.metric-card.urgent {
+    background: linear-gradient(135deg, #2a3f56 0%, var(--primary-dark) 50%, #1a2332 100%);
+    color: var(--white);
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    text-align: left;
+    padding: var(--space-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated background for urgent card */
+.metric-card.urgent::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    animation: pulse 3s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.5;
+        transform: scale(1.1);
+    }
+}
+
+.metric-card.urgent:hover {
+    background: linear-gradient(135deg, #1e2a3b 0%, #2a3f56 50%, #324560 100%);
+    transform: translateY(-8px) scale(1.02);
+}
+
+/* Metric Content */
+.metric-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    z-index: 1;
+}
+
+.metric-number {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    line-height: 1;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.metric-label {
+    font-size: var(--body-large);
+    color: var(--text-secondary);
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+/* Metric Icon */
+.metric-icon {
+    flex-shrink: 0;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--primary-dark);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    color: var(--white);
+}
+
+.metric-card:hover .metric-icon {
+    background: var(--accent-blue);
+    transform: scale(1.05);
+}
+
+.metric-icon svg {
+    width: 28px;
+    height: 28px;
+    color: var(--white);
+}
+
+.metric-icon img {
+    width: 32px;
+    height: 32px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+}
+
+/* Urgent Card Specific Styling */
+.urgent-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    z-index: 1;
+}
+
+.urgent-content {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-lg);
+    z-index: 1;
+}
+
+.urgent-icon {
+    flex-shrink: 0;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #FF3D00;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.metric-card.urgent:hover .urgent-icon {
+    background: #FF5722;
+    transform: scale(1.05);
+}
+
+.urgent-icon svg {
+    width: 36px;
+    height: 36px;
+    color: var(--white);
+}
+
+.urgent-icon img {
+    width: 40px;
+    height: 40px;
+    filter: brightness(0) invert(1);
+}
+
+.urgent-info {
+    text-align: left;
+}
+
+.urgent-number {
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    letter-spacing: -2px;
+}
+
+.urgent-label {
+    font-size: var(--body-large);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.urgent-deadline {
+    text-align: center;
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+    padding-left: var(--space-lg);
+    padding-right: var(--space-sm);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+}
+
+.deadline-date {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--white);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    line-height: 1.5;
+}
+
+.deadline-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    line-height: 1.4;
+}
+
+/* Greeting Section - NOT a card, just text on background */
+.greeting-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.4s ease;
+    animation-delay: 0.2s;
+    animation-fill-mode: both;
+    cursor: default;
+    min-height: 100%;
+    padding: var(--space-lg);
+}
+
+.greeting-text {
+    text-align: center;
+    font-size: 2rem;
+    line-height: 1.3;
+    color: var(--text-primary);
+}
+
+#timeGreeting {
+    font-weight: 400;
+    font-size: 2rem;
+    color: var(--text-primary);
+}
+
+.user-name-highlight {
+    color: var(--accent-blue);
+    font-weight: 700;
+    font-size: 3rem;
+}
+
+/* Grid Layout Positioning - Two Column */
+/* Left Column: All Metrics */
+.metrics-left {
+    grid-column: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+/* Right Column: Greeting */
+.greeting-section {
+    grid-column: 2;
+    grid-row: 1;
+    animation-delay: 0.2s;
+    min-height: 100%;
+}
+
+/* To-do - Top Left */
+.todo-card {
+    animation-delay: 0.05s;
+}
+
+/* Done - Top Right */
+.done-card {
+    animation-delay: 0.1s;
+}
+
+/* Urgent - Middle, spanning all three columns */
+.urgent-card {
+    grid-column: 1 / 4;
+    animation-delay: 0.15s;
+}
+
+/* Bottom row cards - three cards in one row */
+.bottom-card {
+    animation-delay: 0.25s;
+}
+
+/* Centered content for bottom cards */
+.metric-content.centered {
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-card {
+    justify-content: center;
+}
+
+.bottom-card .metric-content {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-xs);
+}
+
+.bottom-card .metric-number {
+    font-size: 3rem;
+}
+
+.bottom-card .metric-label {
+    font-size: var(--body-large);
+    text-align: center;
+}
+
+/* ===========================
+   Responsive Design
+   =========================== */
+
+/* Tablet Landscape (1024px - 1280px) */
+@media (max-width: 1280px) {
+    .summary-container {
+        padding: var(--space-xl);
+    }
+    
+    .metrics-grid {
+        gap: var(--space-lg);
+    }
+    
+    .metric-card {
+        padding: var(--space-xl);
+        min-height: 140px;
+    }
+}
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+    .summary-header {
+        flex-direction: column;
+        text-align: center;
+        gap: var(--space-md);
+    }
+    
+    .summary-header h2 {
+        font-size: var(--h2-size);
+    }
+
+    /* HIDE GREETING ON TABLET AND MOBILE */
+    .greeting-section {
+        display: none !important;
+    }
+
+    /* Adjust metrics grid to single column layout */
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    /* Metrics left section should span full width and use a 3-column grid */
+    .metrics-left {
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+    }
+    
+    .metric-card:nth-child(1) { 
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    .metric-card:nth-child(2) { 
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    
+    .metric-card:nth-child(3) { 
+        grid-column: 3 / 4;
+        grid-row: 1 / 2;
+    }
+    
+    .metric-card:nth-child(4) { 
+        grid-column: 1 / 4;
+        grid-row: 2 / 3;
+    }
+    
+    .metric-card:nth-child(5) { 
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+    
+    .metric-card:nth-child(6) { 
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+    }
+
+    .metric-card.urgent {
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: left;
+        min-height: 180px;
+    }
+
+    .urgent-content {
+        margin-bottom: 0;
+    }
+
+    .urgent-deadline {
+        border-top: none;
+        border-left: 2px solid rgba(255, 255, 255, 0.25);
+        padding-top: 0;
+        padding-left: var(--space-xl);
+        text-align: center;
+    }
+}
+
+/* Mobile Large (600px - 768px) */
+@media (max-width: 768px) {
+    .summary-container {
+        padding: var(--space-lg);
+    }
+
+    .summary-header {
+        padding-bottom: var(--space-md);
+        margin-bottom: var(--space-lg);
+    }
+
+    .summary-header h2 {
+        font-size: var(--h3-size);
+    }
+
+    /* HIDE GREETING ON MOBILE */
+    .greeting-section {
+        display: none !important;
+    }
+
+    /* Adjust metrics grid layout */
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    /* Metrics left section should span full width and use a 2-column grid */
+    .metrics-left {
+        grid-column: 1;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    
+    .metric-card:nth-child(1) { 
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+    
+    .metric-card:nth-child(2) { 
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+    
+    .metric-card:nth-child(3) { 
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+    
+    .metric-card:nth-child(4) { 
+        grid-column: 2 / 3;
+        grid-row: 2 / 4;
+    }
+    
+    .metric-card:nth-child(5) { 
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+    
+    .metric-card:nth-child(6) { 
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
+
+    .metric-card {
+        padding: var(--space-lg);
+        min-height: 130px;
+    }
+
+    .metric-card.urgent {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-lg);
+        min-height: 220px;
+    }
+
+    .urgent-content {
+        flex-direction: column;
+        gap: var(--space-md);
+        margin-bottom: var(--space-md);
+    }
+
+    .urgent-icon {
+        width: 64px;
+        height: 64px;
+    }
+
+    .urgent-icon img {
+        width: 36px;
+        height: 36px;
+    }
+
+    .urgent-info {
+        text-align: center;
+    }
+
+    .urgent-deadline {
+        border-left: none;
+        border-top: 2px solid rgba(255, 255, 255, 0.25);
+        padding-left: 0;
+        padding-top: var(--space-md);
+        text-align: center;
+        width: 100%;
+    }
+
+    .metric-number {
+        font-size: 2.5rem;
+    }
+
+    .urgent-number {
+        font-size: 2.75rem;
+    }
+
+    .metric-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .metric-icon img {
+        width: 32px;
+        height: 32px;
+    }
+}
+
+/* Mobile (480px - 600px) */
+@media (max-width: 600px) {
+    /* HIDE GREETING ON MOBILE */
+    .greeting-section {
+        display: none !important;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    /* Reset grid positioning for single column */
+    .metrics-left {
+        grid-column: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .metric-card {
+        padding: var(--space-lg);
+        min-height: 120px;
+    }
+    
+    .metric-card.urgent {
+        min-height: 200px;
+    }
+}
+
+/* Mobile Small (< 480px) */
+@media (max-width: 480px) {
+    .summary-container {
+        padding: var(--space-md);
+    }
+
+    .summary-header {
+        gap: var(--space-sm);
+        margin-bottom: var(--space-md);
+    }
+
+    .summary-header h2 {
+        font-size: var(--h4-size);
+    }
+    
+    .title-sub {
+        font-size: var(--body-large);
+    }
+
+    /* HIDE GREETING ON MOBILE */
+    .greeting-section {
+        display: none !important;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    /* Reset grid positioning for single column */
+    .metrics-left {
+        grid-column: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-md);
+    }
+
+    .metric-card {
+        padding: var(--space-md);
+        min-height: 110px;
+    }
+
+    .metric-card.urgent {
+        min-height: 200px;
+        padding: var(--space-md);
+    }
+
+    .metric-number {
+        font-size: 2rem;
+    }
+
+    .metric-label {
+        font-size: var(--body-regular);
+    }
+
+    .metric-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .metric-icon img {
+        width: 28px;
+        height: 28px;
+    }
+
+    .urgent-icon {
+        width: 56px;
+        height: 56px;
+    }
+
+    .urgent-icon img {
+        width: 32px;
+        height: 32px;
+    }
+
+    .urgent-number {
+        font-size: 2.25rem;
+    }
+
+    .urgent-label {
+        font-size: var(--body-regular);
+    }
+
+    .deadline-date {
+        font-size: var(--body-large);
+    }
+
+    .deadline-label {
+        font-size: var(--body-small);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .summary-container {
+        padding: 0;
+    }
+
+    .metric-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid var(--border-light);
+    }
+
+    .metric-card:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .metric-card.urgent {
+        background: #2a3f56;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
