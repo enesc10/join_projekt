@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/mobile-nav.css">
     <link rel="stylesheet" href="css/custom-dialogs.css">
     <link rel="icon" href="assets/icons/join-logo.svg">
 </head>
@@ -48,21 +49,67 @@
             </div>
         </aside>
 
+        <!-- Sidebar Overlay (Mobile) -->
+        <div class="sidebar-overlay"></div>
+
         <!-- Main Content -->
         <main class="main-content">
             <!-- Header -->
             <header class="page-header">
+                
                 <h1>Kanban Project Management Tool</h1>
                 <div class="header-actions">
                     <button class="help-btn" onclick="window.location.href='help.html'">
                         <img src="assets/icons/question-mark.svg" alt="Help">
                     </button>
+                    
+                    <div class="more-options-dropdown" id="moreOptionsDropdown">
+                        <a href="help.html">
+                            <img src="assets/icons/question-mark.svg" alt="Help">
+                            <span>Help</span>
+                        </a>
+                        <a href="legal-notice.html">
+                            <img src="assets/icons/legal-notice.svg" alt="Legal Notice">
+                            <span>Legal Notice</span>
+                        </a>
+                        <a href="privacy-policy.html">
+                            <img src="assets/icons/legal-notice.svg" alt="Privacy Policy">
+                            <span>Privacy Policy</span>
+                        </a>
+                        <button onclick="logout()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            <span>Log out</span>
+                        </button>
+                    </div>
                     <div class="user-menu">
                         <div class="user-profile" id="userProfile" onclick="toggleUserMenu()">
                             <span id="userInitials">GU</span>
                         </div>
                         <div class="user-dropdown" id="userDropdown">
-                            <button onclick="logout()">Logout</button>
+                            <a href="help.html">
+                                <img src="assets/icons/question-mark.svg" alt="Help">
+                                <span>Help</span>
+                            </a>
+                            <a href="legal-notice.html">
+                                <img src="assets/icons/legal-notice.svg" alt="Legal Notice">
+                                <span>Legal Notice</span>
+                            </a>
+                            <a href="privacy-policy.html">
+                                <img src="assets/icons/legal-notice.svg" alt="Privacy Policy">
+                                <span>Privacy Policy</span>
+                            </a>
+                            <button onclick="logout()">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 21H5C4.46957 21 3.96086 20.7893 3.58579 20.4142C3.21071 20.0391 3 19.5304 3 19V5C3 4.46957 3.21071 3.96086 3.58579 3.58579C3.96086 3.21071 4.46957 3 5 3H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M16 17L21 12L16 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M21 12H9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                <span>Log out</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -71,89 +118,124 @@
             <!-- Summary Content -->
             <div class="summary-container">
                 <div class="summary-header">
-                    <h2>Join 360 | Key Metrics at a Glance</h2>
-                    <div class="greeting" id="greeting">
-                        <span id="timeGreeting">Good morning</span>,
-                        <span id="userName">Guest</span>
-                    </div>
+                    <h2><span class="title-main">Join 360</span> <span class="title-separator">|</span> <span class="title-sub">Key Metrics at a Glance</span></h2>
                 </div>
 
                 <div class="metrics-grid">
-                    <!-- Tasks in Board -->
-                    <div class="metric-card large" onclick="navigateToBoard()">
-                        <div class="metric-content">
-                            <div class="metric-number" id="tasksInBoard">0</div>
-                            <div class="metric-label">Tasks in<br>Board</div>
-                        </div>
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Tasks">
-                        </div>
-                    </div>
-
-                    <!-- Tasks in Progress -->
-                    <div class="metric-card large" onclick="navigateToBoard('in-progress')">
-                        <div class="metric-content">
-                            <div class="metric-number" id="tasksInProgress">0</div>
-                            <div class="metric-label">Tasks in<br>Progress</div>
-                        </div>
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Progress">
-                        </div>
-                    </div>
-
-                    <!-- Awaiting Feedback -->
-                    <div class="metric-card large" onclick="navigateToBoard('await-feedback')">
-                        <div class="metric-content">
-                            <div class="metric-number" id="awaitingFeedback">0</div>
-                            <div class="metric-label">Awaiting<br>Feedback</div>
-                        </div>
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Feedback">
-                        </div>
-                    </div>
-
-                    <!-- Urgent -->
-                    <div class="metric-card urgent" onclick="navigateToBoard('urgent')">
-                        <div class="urgent-content">
-                            <div class="urgent-icon">
-                                <img src="assets/img/urgent.png" alt="Urgent">
+                    <!-- Left Column: All Metrics -->
+                    <div class="metrics-left">
+                        <!-- Todo -->
+                        <div class="metric-card small todo-card" onclick="navigateToBoard('to-do')">
+                            <div class="metric-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zM20.71 7.04c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/>
+                                </svg>
                             </div>
-                            <div class="urgent-info">
-                                <div class="urgent-number" id="urgentTasks">0</div>
-                                <div class="urgent-label">Urgent</div>
+                            <div class="metric-content">
+                                <div class="metric-number" id="todoTasks">1</div>
+                                <div class="metric-label">To-do</div>
                             </div>
                         </div>
-                        <div class="urgent-deadline">
-                            <div class="deadline-date" id="nextDeadline">No urgent tasks</div>
-                            <div class="deadline-label">Upcoming Deadline</div>
+
+                        <!-- Done -->
+                        <div class="metric-card small done-card" onclick="navigateToBoard('done')">
+                            <div class="metric-icon">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="metric-content">
+                                <div class="metric-number" id="doneTasks">1</div>
+                                <div class="metric-label">Done</div>
+                            </div>
+                        </div>
+
+                        <!-- Urgent - Large Card -->
+                        <div class="metric-card urgent urgent-card" onclick="navigateToBoard('urgent')">
+                            <div class="urgent-top">
+                                <div class="urgent-icon">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16 8L13 14L16 20L19 14L16 8Z" fill="white"/>
+                                        <path d="M16 22L14 25H18L16 22Z" fill="white"/>
+                                    </svg>
+                                </div>
+                                <div class="urgent-info">
+                                    <div class="urgent-number" id="urgentTasks">1</div>
+                                    <div class="urgent-label">URGENT</div>
+                                </div>
+                            </div>
+                            <div class="urgent-deadline">
+                                <div class="deadline-date" id="nextDeadline">October 16, 2022</div>
+                                <div class="deadline-label">UPCOMING DEADLINE</div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks in Board -->
+                        <div class="metric-card bottom-card" onclick="navigateToBoard()">
+                            <div class="metric-content centered">
+                                <div class="metric-number" id="tasksInBoard">5</div>
+                                <div class="metric-label">Tasks in<br>Board</div>
+                            </div>
+                        </div>
+
+                        <!-- Tasks in Progress -->
+                        <div class="metric-card bottom-card" onclick="navigateToBoard('in-progress')">
+                            <div class="metric-content centered">
+                                <div class="metric-number" id="tasksInProgress">2</div>
+                                <div class="metric-label">Tasks In<br>Progress</div>
+                            </div>
+                        </div>
+
+                        <!-- Awaiting Feedback -->
+                        <div class="metric-card bottom-card" onclick="navigateToBoard('await-feedback')">
+                            <div class="metric-content centered">
+                                <div class="metric-number" id="awaitingFeedback">2</div>
+                                <div class="metric-label">Awaiting<br>Feedback</div>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Todo -->
-                    <div class="metric-card small" onclick="navigateToBoard('to-do')">
-                        <div class="metric-icon">
-                            <img src="assets/img/pencil.png" alt="Todo">
-                        </div>
-                        <div class="metric-content">
-                            <div class="metric-number" id="todoTasks">0</div>
-                            <div class="metric-label">To-do</div>
-                        </div>
-                    </div>
-
-                    <!-- Done -->
-                    <div class="metric-card small" onclick="navigateToBoard('done')">
-                        <div class="metric-icon">
-                            <img src="assets/img/checkmark-blue.png" alt="Done">
-                        </div>
-                        <div class="metric-content">
-                            <div class="metric-number" id="doneTasks">0</div>
-                            <div class="metric-label">Done</div>
+                    <!-- Right Column: Greeting Section -->
+                    <div class="greeting-section">
+                        <div class="greeting-text">
+                            <span id="timeGreeting">Good morning</span>,<br>
+                            <span id="userName" class="user-name-highlight">Sofia Müller</span>
                         </div>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="bottom-nav-container">
+            <a href="summary.html" class="bottom-nav-item active">
+                <div class="bottom-nav-icon">
+                    <img src="assets/icons/summary-icon.svg" alt="Summary">
+                </div>
+                <span class="bottom-nav-label">Summary</span>
+            </a>
+            <a href="add-task.html" class="bottom-nav-item">
+                <div class="bottom-nav-icon">
+                    <img src="assets/icons/addtask-icon.svg" alt="Add Task">
+                </div>
+                <span class="bottom-nav-label">Add Task</span>
+            </a>
+            <a href="board.html" class="bottom-nav-item">
+                <div class="bottom-nav-icon">
+                    <img src="assets/icons/board-icon.svg" alt="Board">
+                </div>
+                <span class="bottom-nav-label">Board</span>
+            </a>
+            <a href="contacts.html" class="bottom-nav-item">
+                <div class="bottom-nav-icon">
+                    <img src="assets/icons/contacts-icon.svg" alt="Contacts">
+                </div>
+                <span class="bottom-nav-label">Contacts</span>
+            </a>
+        </div>
+    </nav>
 
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
@@ -167,11 +249,12 @@
     <script src="js/custom-dialogs.js"></script>
     
     <!-- App Scripts -->
-    
+    <script src="js/menu.js"></script>
     <script src="js/auth.js"></script>
     <script src="js/contacts-data.js"></script>
     <script src="js/tasks.js"></script>
     <script src="js/demo-data-manager.js"></script>
     <script src="js/summary.js"></script>
+    <script src="js/mobile-nav.js"></script>
 </body>
 </html>
