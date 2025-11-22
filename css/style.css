@@ -193,9 +193,10 @@ a:hover {
 }
 
 .btn-primary:disabled {
-    opacity: 0.5;
+    opacity: 1;
     cursor: not-allowed;
     pointer-events: none;
+    background: var(--primary-dark);
 }
 
 .btn-secondary {

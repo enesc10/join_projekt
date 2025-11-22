@@ -37,10 +37,10 @@
 .signup-card {
     background: var(--white);
     border-radius: 30px;
-    padding: 48px 56px;
+    padding: 35px 45px;
     box-shadow: 0px 0px 14px 3px rgba(0, 0, 0, 0.04);
     width: 100%;
-    max-width: 652px;
+    max-width: 452px;
     text-align: center;
     position: relative;
 }
@@ -92,7 +92,7 @@
     width: 150px;
     height: 3px;
     background: var(--accent-blue);
-    margin: 0 auto 32px;
+    margin: 0 auto 20px;
     border-radius: var(--radius-sm);
 }
 
@@ -105,7 +105,7 @@
 /* Input Group Styling with Icons on RIGHT */
 .signup-card .input-group {
     position: relative;
-    margin-bottom: 32px;
+    margin-bottom: 12px;
 }
 
 .signup-card .input-group input {
@@ -159,7 +159,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 16px 0 32px 0;
+    margin: 8px 0 12px 0;
     text-align: left;
     justify-content: flex-start;
 }
@@ -197,7 +197,7 @@
     height: 48px;
     font-size: 21px;
     font-weight: 700;
-    margin-top: 8px;
+    margin-top: 0px;
     background: var(--primary-dark);
     color: var(--white);
     border: none;
@@ -217,8 +217,9 @@
 }
 
 .signup-card .btn-primary:disabled {
-    opacity: 0.5;
+    opacity: 1;
     cursor: not-allowed;
+    background: var(--primary-dark);
 }
 
 /* Footer Links */
@@ -347,7 +348,8 @@
 }
 
 
-/* Form Validation Styles */
+/* Form Validation Styles - DISABLED FOR CLEANER UI */
+/*
 .input-group input.valid {
     border-color: #28a745;
     background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%2328a745" viewBox="0 0 16 16"><path d="M13.854 3.646a.5.5 0 0 1 0 .708l-7 7a.5.5 0 0 1-.708 0l-3.5-3.5a.5.5 0 1 1 .708-.708L6.5 10.293l6.646-6.647a.5.5 0 0 1 .708 0z"/></svg>');
@@ -373,6 +375,7 @@
     border-color: #dc3545;
     box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.1);
 }
+*/
 
 /* Error Message */
 .error-message {

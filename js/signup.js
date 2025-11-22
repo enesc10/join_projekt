@@ -204,15 +204,18 @@ function isValidEmail(email) {
  * Update input validation visual feedback
  * @param {HTMLElement} input - Input element
  * @param {boolean} isValid - Whether input is valid
+ * DISABLED: No visual validation feedback for cleaner UI
  */
 function updateInputValidation(input, isValid) {
     if (!input) return;
     
+    // Remove validation classes for cleaner UI
     input.classList.remove('valid', 'invalid');
     
-    if (input.value.trim().length > 0) {
-        input.classList.add(isValid ? 'valid' : 'invalid');
-    }
+    // Visual feedback disabled
+    // if (input.value.trim().length > 0) {
+    //     input.classList.add(isValid ? 'valid' : 'invalid');
+    // }
 }
 
 /**
