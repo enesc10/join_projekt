@@ -217,8 +217,9 @@
 }
 
 .signup-card .btn-primary:disabled {
-    opacity: 0.5;
+    opacity: 1;
     cursor: not-allowed;
+    background: var(--primary-dark);
 }
 
 /* Footer Links */
